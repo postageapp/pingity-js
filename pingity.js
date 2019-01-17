@@ -7,9 +7,7 @@ function ValidateWithPingity() {
   console.log(input)
 
   $(document).ajaxStart(function() {
-    $( "#success" ).hide();
-    $( "#warning" ).hide();
-    $( "#fail" ).hide();
+    $( "#pingity-status" ).children().hide();
     $( "#working" ).show();
   });
 
@@ -30,6 +28,8 @@ function ValidateWithPingity() {
   });
 
   request.fail(function(jqXHR, textStatus) {
+    $( "#pingity-status" ).children().hide();
+    $( "#skipped" ).show();
     $( "#oops" ).show();
       return ValidateWithRegex(input);
   });
@@ -46,23 +46,15 @@ function ValidateWithRegex(input) {
 }
 
 function displayResult(result) {
+  $( "#pingity-status" ).children().hide();
   switch (result) {
     case "pass":
-      $( "#working" ).hide();
-      $( "#warning" ).hide();
-      $( "#fail" ).hide();
       $( "#success" ).show();
       break;
     case "fail_critical":
-      $( "#working" ).hide();
-      $( "#success" ).hide();
-      $( "#warning" ).hide();
       $( "#fail" ).show();
       break;
     case "warning":
-      $( "#working" ).hide();
-      $( "#success" ).hide();
-      $( "#fail" ).hide();
       $( "#warning" ).show();
       break;
   }

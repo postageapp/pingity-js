@@ -16,10 +16,13 @@
         Enter an address to test with Pingity:
         <br>
         <input type="text" id="pingity-address" placeholder="address@example.com">
-        <i class="fas fa-cog fa-spin" id="working" style="display: none"></i>
-        <i class="fas fa-check-circle" id="success" style="display: none"></i>
-        <i class="fas fa-times-circle" id="fail" style="display: none"></i>
-        <i class="fas fa-exclamation-circle" id="warning" style="display: none"></i>
+        <span id='pingity-status'>
+          <i class="fas fa-cog fa-spin" id="working" style="display: none"></i>
+          <i class="fas fa-check-circle" id="success" style="display: none"></i>
+          <i class="fas fa-times-circle" id="fail" style="display: none"></i>
+          <i class="fas fa-exclamation-circle" id="warning" style="display: none"></i>
+          <i class="fas fa-dot-circle" id="skipped" style="display: none"></i>
+        </span>  
         <br>
         <span id="oops" style="display: none">Pingity isn't responding. Running basic tests...</span>
         <br>
