@@ -1,0 +1,17 @@
+/* CSS for pingity widget */
+
+#working {
+  color: grey;
+}
+
+#success {
+  color: #4caf50;
+}
+
+#fail {
+  color: #f73b17;
+}
+
+#warning {
+  color: #f7b939;
+}

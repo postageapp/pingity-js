@@ -1,12 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pingity Widget</title>
+    <meta charset="utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="pingity.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="pingity.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="pingity.css">
+  </head>
+  <body>  
 
-<div id="pingity-widget">
-  <form onsubmit="ValidateWithPingity(); return false;" accept-charset="utf-8">
-    Enter an address to test with Pingity:
-    <br>
-    <input type="text" id="pingity-address" placeholder="address@example.com"><br><br>
-    <input type="submit" value="Test with Pingity">
-  </form>
-</div>
+    <div id="pingity-widget">
+      <form onsubmit="ValidateWithPingity(); return false;" accept-charset="utf-8">
+        Enter an address to test with Pingity:
+        <br>
+        <input type="text" id="pingity-address" placeholder="address@example.com">
+        <i class="fas fa-cog fa-spin" id="working" style="display: none"></i>
+        <i class="fas fa-check-circle" id="success" style="display: none"></i>
+        <i class="fas fa-times-circle" id="fail" style="display: none"></i>
+        <i class="fas fa-exclamation-circle" id="warning" style="display: none"></i>
+        <br>
+        <span id="oops" style="display: none">Pingity isn't responding. Running basic tests...</span>
+        <br>
+        <input type="submit" value="Test with Pingity">
+      </form>
+
+    </div>
+
+  </body>
+</html>
+
