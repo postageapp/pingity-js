@@ -61,3 +61,6 @@ function displayResult(result) {
 }
 
 
+exports.printMsg = function() {
+  console.log("Hello from pingity-js");
+}

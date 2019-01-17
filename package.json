@@ -1,0 +1,23 @@
+{
+  "name": "pingity",
+  "version": "1.0.0",
+  "description": "A package for easily including the Pingity API on a webpage.",
+  "main": "pingity.js",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/postageapp/pingity-js.git"
+  },
+  "author": "Emily McMinn, emily@postageapp.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/postageapp/pingity-js/issues"
+  },
+  "homepage": "https://github.com/postageapp/pingity-js#readme"
+}
