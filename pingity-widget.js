@@ -2,11 +2,16 @@
 const PINGITY_ID = "xE5Vj2EK503jtXPOfAQYo7Vb"
 const PINGITY_SECRET = "TepNhXkENEcrbpHBro54EzvffVkByHTDkiQF9loPCOyfkcICvfvCnHIPhRCgtRO2"
 
-function ValidateWithPingity(input) {
-
+function ValidateWithPingity() {
+  let input = document.getElementById('pingity-address').value
   console.log(input)
 
-  let request = $.ajax({
+  $(document).ajaxStart(function() {
+    $( "#pingity-status" ).children().hide();
+    $( "#working" ).show();
+  });
+
+  var request = $.ajax({
     url: 'https://pingity.com/api/v1/reports',
     type: 'POST',
     data: { resource: input } ,
@@ -23,7 +28,10 @@ function ValidateWithPingity(input) {
   });
 
   request.fail(function(jqXHR, textStatus) {
-    return ValidateWithRegex(input);
+    $( "#pingity-status" ).children().hide();
+    $( "#skipped" ).show();
+    $( "#oops" ).show();
+      return ValidateWithRegex(input);
   });
 }
 
@@ -31,33 +39,23 @@ function ValidateWithPingity(input) {
 function ValidateWithRegex(input) {
   let mailformat = /^\S+@\S+$/;
   if(input.match(mailformat)) {
-    console.log("Format valid");
+    alert("Format valid");
   } else {
-    console.log("You have entered an invalid email address!");
+    alert("You have entered an invalid email address!");
   }
 }
 
 function displayResult(result) {
+  $( "#pingity-status" ).children().hide();
   switch (result) {
     case "pass":
-      console.log("Address valid, passing all tests");
+      $( "#success" ).show();
       break;
     case "fail_critical":
-      console.log("Address not valid");
+      $( "#fail" ).show();
       break;
     case "warning":
-      console.log("Address valid, some tests failing.");
+      $( "#warning" ).show();
       break;
   }
 }
-
-
-printMsg = function() {
-  console.log("Hello from pingity-js");
-}
-
-module.exports = {
-  printMsg: printMsg,
-  validate: ValidateWithPingity,
-  basic: ValidateWithRegex 
-};
