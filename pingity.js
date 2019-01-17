@@ -61,6 +61,12 @@ function displayResult(result) {
 }
 
 
-exports.printMsg = function() {
+printMsg = function() {
   console.log("Hello from pingity-js");
 }
+
+module.exports = {
+  printMsg: printMsg,
+  validate: ValidateWithPingity,
+  basic: ValidateWithRegex 
+};
