@@ -1,4 +1,4 @@
-#Pingity-js
+# Pingity-js
 
 Includes functions to validate an email address through the Pingity API,
 as well as through a basic regex validation.
