@@ -2,7 +2,9 @@
 const username = "xE5Vj2EK503jtXPOfAQYo7Vb"
 const password = "TepNhXkENEcrbpHBro54EzvffVkByHTDkiQF9loPCOyfkcICvfvCnHIPhRCgtRO2"
 
-function ValidateWithPingity(input) {
+function ValidateWithPingity() {
+  let input = document.getElementById('pingity-address').value
+  console.log(input)
   var request = $.ajax({
     url: 'https://pingity.com/api/v1/reports',
     type: 'POST',
