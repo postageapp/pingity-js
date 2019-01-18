@@ -16,14 +16,20 @@ function ValidateWithPingity(input) {
       'pass': PINGITY_SECRET,
     },
     body: { resource: input },
-    json: true // Automatically stringifies the body to JSON
+    json: true, // Automatically stringifies the body to JSON
+    resolveWithFullResponse: true // Make sure to return everything, not just response body
   };  
 
-  request(options) 
-    .then(function (report){
+  return request(options) 
+    .then(function (response){
       //success
-      result = report[0].status.code;
-      return displayResult(result); 
+      result = response.toJSON();
+      report = result.body[0].status.code;
+      return {
+        response: result.statusCode,
+        body: result.body,
+        result: displayResult(report)
+      }; 
     })
     .catch(function (err){
       //fail
@@ -37,33 +43,25 @@ function ValidateWithPingity(input) {
 function ValidateWithRegex(input) {
   let mailformat = /^\S+@\S+$/;
   if(input.match(mailformat)) {
-    console.log("Format valid");
+    return "Format valid";
   } else {
-    console.log("You have entered an invalid email address!");
+    return "You have entered an invalid email address!";
   }
 }
 
 function displayResult(result) {
   switch (result) {
     case "pass":
-      console.log("Address valid, passing all tests");
-      break;
+      return "Address valid, passing all tests";
     case "fail_critical":
-      console.log("Address not valid");
-      break;
+      return "Address not valid";
     case "warning":
-      console.log("Address valid, some tests failing.");
-      break;
+      return "Address valid, some tests failing.";
   }
 }
 
 
-printMsg = function() {
-  console.log("Hello from pingity-js");
-}
-
 module.exports = {
-  printMsg: printMsg,
   validate: ValidateWithPingity,
   basic: ValidateWithRegex 
 };
