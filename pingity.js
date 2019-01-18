@@ -1,4 +1,6 @@
 
+const request = require('request-promise');
+
 const PINGITY_ID = "xE5Vj2EK503jtXPOfAQYo7Vb"
 const PINGITY_SECRET = "TepNhXkENEcrbpHBro54EzvffVkByHTDkiQF9loPCOyfkcICvfvCnHIPhRCgtRO2"
 
@@ -6,25 +8,29 @@ function ValidateWithPingity(input) {
 
   console.log(input)
 
-  let request = $.ajax({
-    url: 'https://pingity.com/api/v1/reports',
-    type: 'POST',
-    data: { resource: input } ,
-    beforeSend: function (xhr){ 
-        xhr.setRequestHeader('Authorization', 'Basic ' + btoa(PINGITY_ID + ':' + PINGITY_SECRET)); 
+  let options = {
+    method: 'POST',
+    uri: 'https://pingity.com/api/v1/reports',
+    auth: {
+      'user': PINGITY_ID,
+      'pass': PINGITY_SECRET,
     },
-    dataType: "json"
-  });
+    body: { resource: input },
+    json: true // Automatically stringifies the body to JSON
+  };  
 
-  request.done(function(report) {
-    // your success code here
-    result = report[0].status.code;
-    return displayResult(result);    
-  });
+  request(options) 
+    .then(function (report){
+      //success
+      result = report[0].status.code;
+      return displayResult(result); 
+    })
+    .catch(function (err){
+      //fail
+      console.log(err);
+      return ValidateWithRegex(input);
+    });
 
-  request.fail(function(jqXHR, textStatus) {
-    return ValidateWithRegex(input);
-  });
 }
 
 
